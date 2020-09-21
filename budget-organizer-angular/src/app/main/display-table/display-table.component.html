@@ -1,0 +1,35 @@
+<div class="display-table">
+    <table class="fl-table">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let transaction of transactionList">
+                <td>{{transaction.type}}</td>
+                <td>{{transaction.transactionType}}</td>
+                <td>{{transaction.description}}</td>
+                <td>{{transaction.location}}</td>
+                <td>{{transaction.date}}</td>
+                <td>{{transaction.amount}}</td>
+                <td><ion-icon name="create-sharp" id="edit"></ion-icon><ion-icon name="close-circle-outline" id="delete"></ion-icon></td>
+            </tr>
+            <tr *ngIf="this.isNewRowCreated">
+                <td>{{addItemRequestPayload.type}}</td>
+                <td>{{addItemRequestPayload.transactionType}}</td>
+                <td>{{addItemRequestPayload.description}}</td>
+                <td>{{addItemRequestPayload.location}}</td>
+                <td>{{addItemRequestPayload.date}}</td>
+                <td>{{addItemRequestPayload.amount}}</td>
+                <td><ion-icon name="create-sharp" id="edit"></ion-icon><ion-icon name="close-circle-outline" id="delete"></ion-icon></td>
+            </tr>
+        <tbody>
+    </table>
+</div>

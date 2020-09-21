@@ -1,0 +1,40 @@
+<div class="display-chart-total">
+    <div class="display-total">
+        <table class="total-table">
+            <tr>
+                <th>Total Income</th>
+                <td>$30000</td>
+            </tr>
+            <tr>
+                <th>Total Expenses</th>
+                <td>$70000</td>
+            </tr>
+            <tr>
+                <th>Initial Budget</th>
+                <td colspan="2">$3000</td>
+            </tr>
+            <tr>
+                <th>Available Budget</th>
+                <td colspan="2">$3000</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="display-chart">
+        <div class="btn-group">
+            <button type="reset" class="btn btn-bar" (click)="chartTypeSwith('bar')">Bar</button>
+            <button type="reset" class="btn btn-polarArea" (click)="chartTypeSwith('polarArea')">Polar Area</button>
+            <button type="reset" class="btn btn-doughnut" (click)="chartTypeSwith('doughnut')">Doughnut</button>
+            <button type="reset" class="btn btn-pie" (click)="chartTypeSwith('pie')">Pie</button>
+        </div>
+        <div class="graph-container">
+            <canvas baseChart
+                    [datasets]="chartData"
+                    [labels]="chartLabels"
+                    [options]="chartOptions"
+                    [legend]="chartLegend"
+                    [chartType]="chartType">
+            </canvas>
+        </div>
+    </div>
+</div>

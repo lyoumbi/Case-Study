@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div class="login">
+    <div class="login-form">
+        <h2>Login</h2>
+        <form action="#" method="post" [formGroup]="loginForm" (ngSubmit)="login()">
+            <span>
+                <ion-icon name="person-sharp"></ion-icon>
+                <input type="text" name="username" id="username" placeholder="Username" [formControlName]="'email'">
+            </span> 
+            <span>
+                <ion-icon name="lock-closed"></ion-icon>
+                <input type="password" name="password" id="password" placeholder="Password" [formControlName]="'password'">
+            </span>
+            <input type="submit" value="LOGIN">
+        </form>
+        <div *ngIf="!loginForm.get('email').valid && loginForm.get('email').touched">Email cannot be empty</div>
+        <div *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">Password cannot be empty</div>
+        <a href="#" routerLink="/register">Register!</a>
+    </div>
+</div>

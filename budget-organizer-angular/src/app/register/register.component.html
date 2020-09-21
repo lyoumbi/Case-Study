@@ -1,0 +1,41 @@
+<app-header></app-header>
+<div class="register">
+    <div class="registration-form">
+        <h2>Registration</h2>
+        <form action="#" method="post" [formGroup]="registerForm" (ngSubmit)="register()">
+            <span>
+                <span>
+                    <input type="email" name="email" id="email" [formControlName]="'email'" placeholder="Email">
+                    <span *ngIf="!registerForm.get('email').valid && registerForm.get('email').touched">Please enter a valid email</span>    
+                </span>
+                <span>
+                    <input type="text" name="initial-budget" [formControlName]="'initialBudget'" id="initial-budget" placeholder="Initial Budget: 0.00">
+                    <span *ngIf="!registerForm.get('initialBudget').valid && registerForm.get('initialBudget').touched">Please enter a valid amount Ex: 34.01</span>
+                </span>
+                
+            </span>
+            <span>
+                <span>
+                    <input type="text" name="firstname" [formControlName]="'firstName'" id="firstname" placeholder="First Name">
+                    <span *ngIf="!registerForm.get('firstName').valid && registerForm.get('firstName').touched">Please enter a valid first name</span>
+                </span>
+                <span>
+                    <input type="text" name="lastname" [formControlName]="'lastName'" id="lastname" placeholder="Last Name">
+                    <span *ngIf="!registerForm.get('lastName').valid && registerForm.get('lastName').touched">Please enter a valid last name</span>
+                </span>
+            </span>
+            <span>
+                <span>
+                    <input type="password" name="password" [formControlName]="'password'" id="password" placeholder="Password">
+                    <span *ngIf="!registerForm.get('password').valid && registerForm.get('password').touched">Please enter a valid password</span>
+                </span>
+                <span>
+                    <input type="password" name="confirmed-password" [formControlName]="'confirmedPassword'" id="confirmed-password" placeholder="Re-enter Password">
+                    <span *ngIf= "!registerForm.get('confirmedPassword').valid && registerForm.get('confirmedPassword').touched">Password is required</span>
+                </span>
+            </span>
+            <input type="submit" value="REGISTER">
+        </form>
+        <a href="#" routerLink="/login">Login!</a>
+    </div>
+</div>

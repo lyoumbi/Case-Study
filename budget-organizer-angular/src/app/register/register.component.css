@@ -1,0 +1,134 @@
+.register {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-image: url("/assets/img/registration.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.registration-form {
+    background-image: -webkit-gradient(linear, left top, right top, from(#8e2de2), to(#4a00e0));
+    background-image: linear-gradient(to right, #8e2de2, #4a00e0);
+    border: 3px solid white;
+    border-radius: 10px;
+    opacity: 0.8;
+    top: 7%;
+    bottom: 0;
+    right: 10%;
+    margin: auto;
+    position: absolute;
+    width: 40%;
+    height: 85%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+ .registration-form form {
+    width: 90%;
+    height: 60%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+ .registration-form form input {
+    text-align: center;
+    width: 100%;
+    height: 12%;
+    font-size: 150%;
+    padding: 3% 0 4% 0;
+    border-radius: 100px;
+    border: 2px solid black;
+  }
+  
+ .registration-form form input[type=submit] {
+    border: 2px solid white;
+    background-color: #003cff;
+    font-size: 200%;
+    font-weight: 300;
+    color: white;
+    padding: 0 0 0.2% 0;
+  }
+  
+ .registration-form form input[type=submit]:hover {
+    border: 2px solid black;
+    background-color: white;
+    color: #4a00e0;
+  }
+  
+ .registration-form form span {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+ .registration-form form span {
+    width: 100%;
+    height: 50%;
+  }
+
+  .registration-form form span span {
+    width: 49%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .registration-form form span span input {
+    width: 100%;
+    height: 70%;
+    font-size: 150%;
+    font-weight: 300;
+  }
+
+  .registration-form form span span span {
+    width: 100%;
+    font-size: 100%;
+    color: red;
+    font-weight: 300;
+    text-align: center;
+  }
+
+  
+  
+ .registration-form h2 {
+    color: white;
+    font-size: 300%;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  
+ .registration-form a {
+    color: white;
+    font-size: 200%;
+    font-weight: 200;
+  }
+  
+ .registration-form a:hover {
+    color: blue;
+  }

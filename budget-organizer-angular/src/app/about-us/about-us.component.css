@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  
+.resume {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    margin: auto;
+    width: 70%;
+    height: 85%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    background-color: #e2e2e2;
+    border-radius: 10px;
+    border: 3px solid #4a00e0;
+  }
+  
+  .resume .desc {
+    width: 77%;
+    height: 90%;
+    padding: 3% 2% 0 3%;
+    text-align: justify;
+    margin-left: 3%;
+  }
+  
+  .resume .desc div {
+    width: 95%;
+  }
+  
+  .resume .desc div h1 {
+    font-size: 300%;
+    font-weight: 400;
+    color: #4a00e0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .resume .desc div h2 {
+    margin-top: 1%;
+    font-size: 150%;
+    color: #8e2de2;
+    font-weight: 300;
+  }
+  
+  .resume .desc div h3 {
+    margin-top: 1%;
+    font-size: 120%;
+    font-weight: 300;
+    color: #8e2de2;
+  }
+  
+  .resume .desc div p, .resume .desc div tr td {
+    font-weight: 300;
+  }
+  
+  .resume .desc div table {
+    width: 100%;
+  }
+  
+  .resume .desc div tr td:first-child {
+    width: 18%;
+    font-weight: 500;
+    text-align: right;
+  }
+  
+  .resume .desc div tr td:nth-child(2) {
+    width: 82%;
+    padding: 0 1% 0 1%;
+  }
+  
+  .resume .info {
+    width: 23%;
+    height: 100%;
+  }
+  
+  .resume .pp {
+    width: 100%;
+    height: 30%;
+  }
+  
+  .resume .pp img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .resume .contact {
+    width: 100%;
+    height: 70%;
+    background-color: #8e2de2;
+    font-size: 80%;
+    font-weight: 200;
+    padding: 8% 0 0 0;
+  }
+  
+  .resume .contact h1 {
+    font-size: 300%;
+    color: white;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 10%;
+  }
+  
+  .resume .contact h2 {
+    font-size: 170%;
+    color: white;
+    font-weight: 300;
+    text-align: left;
+    margin: 10% 5%;
+  }
+  
+  .resume .contact h2 ion-icon {
+    font-size: 150%;
+  }
+  
+  .resume .contact h2 a {
+    font-size: 150%;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .resume .contact h2 a:hover {
+    color: #4a00e0;
+  }
+  
+  .resume .contact h3 {
+    font-style: italic;
+    font-size: 150%;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+  }

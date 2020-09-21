@@ -1,0 +1,16 @@
+<header>
+    <div class="nav">
+        <img src="/assets/img/logo.JPG" alt="Logo">
+        <div (click)="menuDisplay()" id="user-logo">
+            <span>{{firstName}}</span><span>{{lastName}}</span><ion-icon name="people-circle"></ion-icon>
+        </div>
+    </div>
+
+    <div class="user-menu animated fadeOutUp">
+        <ion-icon name="close-circle-outline" id="close" (click)="menuClosed()"></ion-icon>
+        <ul>
+            <li><a href="#" routerLink="/login" (click)="logout()">Logout</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+    </div>
+</header>
