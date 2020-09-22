@@ -4,17 +4,24 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginResponse } from 'src/app/login/login-response.payload';
 import { AuthService } from 'src/app/shared/auth.service';
 import { TransactionService } from 'src/app/shared/transaction-service.service';
+import { AddItemRequestPayload } from '../add-item/add-item-resquest.payload';
 import { TotalPayload } from '../display-chart/total.payload';
-import { AddItemRequestPayload } from './add-item-resquest.payload';
 
 @Component({
-  selector: 'app-add-item',
-  templateUrl: './add-item.component.html',
-  styleUrls: ['./add-item.component.css']
+  selector: 'app-update-item',
+  templateUrl: './update-item.component.html',
+  styleUrls: ['./update-item.component.css']
 })
-export class AddItemComponent implements OnInit {
+export class UpdateItemComponent implements OnInit {
 
-  addForm : FormGroup;
+  updateForm : FormGroup =  new FormGroup({
+                                            transactionType : new FormControl(''),
+                                                      type : new FormControl(''),
+                                                description : new FormControl('New Transaction'),
+                                                  location : new FormControl('Store or Online'),
+                                                    amount : new FormControl(0.0, Validators.pattern("^[0-9]+(\.[0-9][0-9])?$")),
+                                                      date : new FormControl('')
+                                          });
 
   transactionList : Array<AddItemRequestPayload> = [];
   addItemRequestPayload : AddItemRequestPayload = {
@@ -25,45 +32,35 @@ export class AddItemComponent implements OnInit {
                                                     location : '',
                                                     amount : 0.0,
                                                       date : ''
+                                                      
                                                   }
   loginResponse: LoginResponse;
   totalPayload : TotalPayload;
-  isUpdate : boolean;
+  isUpdate : boolean = false;
 
-  constructor(private transactionService: TransactionService, private authService: AuthService, private toastr: ToastrService) { 
-  }
+  constructor(private transactionService: TransactionService, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.addForm = new FormGroup({
-      transactionType : new FormControl(''),
-                 type : new FormControl(''),
-          description : new FormControl('New Transaction'),
-             location : new FormControl('Store or Online'),
-               amount : new FormControl(0.0, Validators.pattern("^[0-9]+(\.[0-9][0-9])?$")),
-                 date : new FormControl('')
-    });
-
     this.authService.sharedLoginResponseObservable.subscribe(val => this.loginResponse = val);
     this.transactionService.currentSharedAddItemRequestPayload.subscribe(val => this.addItemRequestPayload = val);
     this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
-    this.transactionService.sharedIsUpdateObservable.subscribe(val => this.isUpdate = val);
     this.authService.sharedTotalPayloadObservable.subscribe(val => this.totalPayload = val);
   }
 
-  addTransaction() {
-    this.addItemRequestPayload.type = this.addForm.get('type').value;
-    this.addItemRequestPayload.transactionType = this.addForm.get('transactionType').value;
-    this.addItemRequestPayload.description = this.addForm.get('description').value;
-    this.addItemRequestPayload.location = this.addForm.get('location').value;
-    this.addItemRequestPayload.amount = this.addForm.get('amount').value;
+  updateTransaction(id : number) {
+    this.addItemRequestPayload.type = this.updateForm.get('type').value;
+    this.addItemRequestPayload.transactionType = this.updateForm.get('transactionType').value;
+    this.addItemRequestPayload.description = this.updateForm.get('description').value;
+    this.addItemRequestPayload.location = this.updateForm.get('location').value;
+    this.addItemRequestPayload.amount = this.updateForm.get('amount').value;
 
-    if(this.addForm.get('date').value === '') {
+    if(this.updateForm.get('date').value === '') {
       this.addItemRequestPayload.date = this.getCurrentDate();
     } else {
-      this.addItemRequestPayload.date = this.addForm.get('date').value;
+      this.addItemRequestPayload.date = this.updateForm.get('date').value;
     }
 
-    this.transactionService.addTransaction(this.addItemRequestPayload, this.loginResponse.id)
+    this.transactionService.updateTransaction(this.addItemRequestPayload, id)
                            .subscribe(data => {
                              if(data) {
                               this.transactionList = this.transactionService.getAllTransactions(this.loginResponse.id);
@@ -72,16 +69,12 @@ export class AddItemComponent implements OnInit {
                               this.changedTotalPayload();
                               this.isUpdate = false;
                               this.changeIsUpdate();
-                              this.toastr.success('Transaction Created!', 'CONFIRMATION');
+                              this.toastr.success('Transction Updated', 'CONFIRMATION');
                              } else {
-                              this.toastr.error('Transaction not create, Try again!', 'ERROR');
+                              this.toastr.error('Transaction not Update, Try again!', 'ERROR');
                              }
                            });
-  }
 
-  getCurrentDate() : string {
-    return new Date().getFullYear() + '-' + (new Date().getMonth() >=10 ? new Date().getMonth() : '0' + new Date().getMonth())  
-            + '-' + (new Date().getDate() >= 10 ? new Date().getDate() : '0' + new Date().getDate());
   }
 
   changeAddItemRequestPayload() {
@@ -92,6 +85,11 @@ export class AddItemComponent implements OnInit {
     this.transactionService.sharedTransactionListFunction(this.transactionList);
   }
 
+  getCurrentDate() : string {
+    return new Date().getFullYear() + '-' + (new Date().getMonth() >=10 ? new Date().getMonth() : '0' + new Date().getMonth())  
+            + '-' + (new Date().getDate() >= 10 ? new Date().getDate() : '0' + new Date().getDate());
+  }
+
   changeIsUpdate() {
     this.transactionService.shareIsUpdateFunction(this.isUpdate);
   }
@@ -99,5 +97,6 @@ export class AddItemComponent implements OnInit {
   changedTotalPayload() {
     this.authService.sharedTotalPayloadFunction(this.totalPayload);
   }
+
 
 }

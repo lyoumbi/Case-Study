@@ -57,6 +57,14 @@
     color: white;
     background: #8e2de2;
   }
+
+  .income {
+    color: green;
+  }
+
+  .expense {
+    color: red;
+  }
   
   .display-table .fl-table thead tr tr:nth-child(even) {
     background: #4a00e0;

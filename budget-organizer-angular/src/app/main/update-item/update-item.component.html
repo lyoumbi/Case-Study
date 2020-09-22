@@ -1,0 +1,31 @@
+<div class="add-item">
+    <form action="#" method="post" [formGroup]="updateForm" (ngSubmit)="updateTransaction(addItemRequestPayload.id)">
+        <div>
+            <select name="type" id="type" [formControlName]="'type'" [(ngModel)]="addItemRequestPayload.type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+            <select name="Transaction Type" id="transaction-type" [formControlName]="'transactionType'" [(ngModel)]="addItemRequestPayload.transactionType">
+                <option value="salary" class="income">Salary</option>
+                <option value="dividend" class="income">Dividend</option>
+                <option value="gift" class="income">Gift</option>
+                <option value="tip" class="income">Tip</option>
+                <option value="transport" class="expenses">Transport</option>
+                <option value="groceries" class="expenses">Groceries</option>
+                <option value="bill" class="expenses">Bill</option>
+                <option value="rent-morgage" class="expenses">Rent/Mortgage</option>
+                <option value="clothes" class="expenses">Clothes</option>
+                <option value="restaurant" class="expenses">Restaurant</option>
+                <option value="entertainment" class="expenses">Entertainment</option>
+                <option value="other">Other</option>
+            </select>
+            <input type="text" name="description" id="description" placeholder="Description" [formControlName]="'description'" [(ngModel)]="addItemRequestPayload.description">
+            <input type="text" name="location" id="location" placeholder="Location" [formControlName]="'location'" [(ngModel)]="addItemRequestPayload.location">
+            <input type="text" name="amount" id="amount" placeholder="Amount" [formControlName]="'amount'" [(ngModel)]="addItemRequestPayload.amount">
+            <input type="date" name="date" id="date" placeholder="Date" [formControlName]="'date'" [(ngModel)]="addItemRequestPayload.date">
+       </div>
+       <div>
+        <input type="submit" value="UPDATE">
+       </div>
+    </form>
+</div>

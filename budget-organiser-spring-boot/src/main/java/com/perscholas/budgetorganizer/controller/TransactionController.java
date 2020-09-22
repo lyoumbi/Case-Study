@@ -1,11 +1,8 @@
 package com.perscholas.budgetorganizer.controller;
 
 import com.perscholas.budgetorganizer.model.Transaction;
-import com.perscholas.budgetorganizer.model.User;
-import com.perscholas.budgetorganizer.repository.TransactionRepository;
 import com.perscholas.budgetorganizer.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

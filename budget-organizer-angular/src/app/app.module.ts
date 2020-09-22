@@ -21,6 +21,7 @@ import { AddItemComponent } from './main/add-item/add-item.component';
 import { DisplayTableComponent } from './main/display-table/display-table.component';
 import { DisplayChartComponent } from './main/display-chart/display-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { UpdateItemComponent } from './main/update-item/update-item.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ChartsModule } from 'ng2-charts';
     AddItemComponent,
     DisplayTableComponent,
     DisplayChartComponent,
+    UpdateItemComponent,
   ],
   imports: [
     BrowserModule,

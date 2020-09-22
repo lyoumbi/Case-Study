@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginResponse } from 'src/app/login/login-response.payload';
+import { AuthService } from 'src/app/shared/auth.service';
+import { TransactionService } from 'src/app/shared/transaction-service.service';
+import { AddItemRequestPayload } from '../add-item/add-item-resquest.payload';
+import { TotalPayload } from './total.payload';
 
 @Component({
   selector: 'app-display-chart',
@@ -7,11 +12,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayChartComponent implements OnInit {
 
+  loginResponse: LoginResponse;
+  totalPayload : TotalPayload;
+
+  transactionList : Array<AddItemRequestPayload> = [];
+
+  constructor(private transactionService: TransactionService, private authService: AuthService) { }
+
+  ngOnInit(): void {
+    this.authService.sharedLoginResponseObservable.subscribe(val => this.loginResponse = val);
+    this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
+    this.authService.sharedTotalPayloadObservable.subscribe(val => this.totalPayload = val);
+    this.authService.sharedTotalPayloadObservable.subscribe(val => this.totalPayload = val);
+  }
+
   public chartOptions = {
     scaleShowVerticalLines: false,
     responsive: true
-  };  
-  
+  };
 
   public chartLabels = ['Salary', 'Dividend', 'Gift', 'Tip', 'Transport', 'Groceries', 'Bill', 'Rent/Morgage', 'Clothes', 'Restaurant', 'Entertainment', 'Other'];
   public chartLegend = true;  
@@ -27,9 +45,8 @@ export class DisplayChartComponent implements OnInit {
     this.chartType = name;
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  changedTotalPayload() {
+    this.authService.sharedTotalPayloadFunction(this.totalPayload);
   }
 
 }

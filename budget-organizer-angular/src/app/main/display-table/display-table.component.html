@@ -12,13 +12,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let transaction of transactionList">
+            <tr *ngFor="let transaction of transactionList" [ngClass]="{'income': transaction.type==='income', 'expense' : transaction.type==='expense'}">
                 <td>{{transaction.type}}</td>
                 <td>{{transaction.transactionType}}</td>
                 <td>{{transaction.description}}</td>
                 <td>{{transaction.location}}</td>
                 <td>{{transaction.date}}</td>
-                <td>{{transaction.amount}}</td>
+                <td>${{transaction.amount}}</td>
                 <td><ion-icon name="create-sharp" id="edit" (click)="sendForUpdate(transaction.id)"></ion-icon>
                     <ion-icon name="close-circle-outline" id="delete"  (click)="delete(transaction.id)"></ion-icon></td>
             </tr>
