@@ -19,16 +19,8 @@
                 <td>{{transaction.location}}</td>
                 <td>{{transaction.date}}</td>
                 <td>{{transaction.amount}}</td>
-                <td><ion-icon name="create-sharp" id="edit"></ion-icon><ion-icon name="close-circle-outline" id="delete"></ion-icon></td>
-            </tr>
-            <tr *ngIf="this.isNewRowCreated">
-                <td>{{addItemRequestPayload.type}}</td>
-                <td>{{addItemRequestPayload.transactionType}}</td>
-                <td>{{addItemRequestPayload.description}}</td>
-                <td>{{addItemRequestPayload.location}}</td>
-                <td>{{addItemRequestPayload.date}}</td>
-                <td>{{addItemRequestPayload.amount}}</td>
-                <td><ion-icon name="create-sharp" id="edit"></ion-icon><ion-icon name="close-circle-outline" id="delete"></ion-icon></td>
+                <td><ion-icon name="create-sharp" id="edit" (click)="sendForUpdate(transaction.id)"></ion-icon>
+                    <ion-icon name="close-circle-outline" id="delete"  (click)="delete(transaction.id)"></ion-icon></td>
             </tr>
         <tbody>
     </table>

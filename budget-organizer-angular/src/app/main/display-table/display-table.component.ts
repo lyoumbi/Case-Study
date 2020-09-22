@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { LoginResponse } from 'src/app/login/login-response.payload';
+import { AuthService } from 'src/app/shared/auth.service';
 import { TransactionService } from 'src/app/shared/transaction-service.service';
 import { AddItemRequestPayload } from '../add-item/add-item-resquest.payload';
 
@@ -10,36 +13,45 @@ import { AddItemRequestPayload } from '../add-item/add-item-resquest.payload';
 export class DisplayTableComponent implements OnInit {
 
   transactionList : Array<AddItemRequestPayload> = [];
-  isNewRowCreated : boolean;
   addItemRequestPayload : AddItemRequestPayload;
+  loginResponse: LoginResponse;
 
-  constructor(private transactionService : TransactionService) {
-    this.displayTable();
+  constructor(private transactionService : TransactionService, private toastr : ToastrService, private authService : AuthService) {
    }
 
   ngOnInit(): void {
-    this.transactionService.currentValue.subscribe(val => this.isNewRowCreated = val);
+    this.authService.sharedLoginResponseObservable.subscribe(val => this.loginResponse = val);
     this.transactionService.currentSharedAddItemRequestPayload.subscribe(val => this.addItemRequestPayload = val);
-  }
-
-  displayTable() {
-    this.transactionList = this.transactionService.getAllTransaction(); 
-  }
-
-  addNewRow() {
-    
-    this.isNewRowCreated = false;
-  }
-
-  changeIsCreated() {
-    this.transactionService.sharedIsCreatedFunction(this.isNewRowCreated);
+    this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
   }
 
   changeAddItemRequestPayload() {
     this.transactionService.sharedAddItemRequestPayloadFunction(this.addItemRequestPayload);
   }
 
+  changeTansactionList() {
+    this.transactionService.sharedTransactionListFunction(this.transactionList);
+  }
 
-   
+  sendForUpdate(id : number) {
 
+  }
+
+  delete(id: number) {
+    console.log("Id deleted = " + id);
+    this.transactionService.deleteTransaction(id)
+                           .subscribe(data => {
+                            if(data !== null) {
+                              this.transactionList = this.transactionService.getAllTransactions(this.loginResponse.id);
+                              this.changeTransactionList();
+                              this.toastr.success('Delete Data Successfully', 'CONFIRMATION');
+                            } else {
+                              this.toastr.error('Failed to Delete the data', 'ERROR');
+                            }
+                          });
+  }
+
+  changeTransactionList() {
+    this.transactionService.sharedTransactionListFunction(this.transactionList);
+  }
 }

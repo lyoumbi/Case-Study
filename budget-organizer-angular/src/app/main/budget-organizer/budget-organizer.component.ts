@@ -12,7 +12,7 @@ export class BudgetOrganizerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  
+    console.log("You are login!!");
   }
 
 

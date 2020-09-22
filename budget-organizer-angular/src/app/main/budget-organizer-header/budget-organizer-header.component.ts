@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { ToastrService } from 'ngx-toastr';
+import { LoginResponse } from 'src/app/login/login-response.payload';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-budget-organizer-header',
@@ -12,17 +14,15 @@ export class BudgetOrganizerHeaderComponent implements OnInit {
   firstName : string;
   lastName : string;
   id : number;
+  loginResponse: LoginResponse;
 
-  constructor(private localStorage: LocalStorage, private toastr: ToastrService) {}
+  constructor(private toastr: ToastrService, private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.localStorage.getItem('loginUserFirstName', {type: 'string'}).subscribe(fn => this.firstName = fn);
-    this.localStorage.getItem('loginUserLastName', {type: 'string'}).subscribe(ln => this.lastName = ln);
-    this.localStorage.getItem('loginUserId', {type: 'number'}).subscribe(userId => this.id = userId);
+    this.authService.sharedLoginResponseObservable.subscribe(val => this.loginResponse = val);
   }
 
   logout() {
-    this.localStorage.clear();
     this.toastr.success('Logout Successfully', 'CONFIRMATION');
   }
 
@@ -39,5 +39,4 @@ export class BudgetOrganizerHeaderComponent implements OnInit {
         userMenu.classList.toggle('fadeOutUp');
         setTimeout(() => userMenu.style.display = 'none', 500);
     }
-
 }

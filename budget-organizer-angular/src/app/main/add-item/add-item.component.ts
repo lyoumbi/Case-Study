@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { LocalStorage } from '@ngx-pwa/local-storage';
 import { ToastrService } from 'ngx-toastr';
+import { LoginResponse } from 'src/app/login/login-response.payload';
+import { AuthService } from 'src/app/shared/auth.service';
 import { TransactionService } from 'src/app/shared/transaction-service.service';
 import { AddItemRequestPayload } from './add-item-resquest.payload';
 
@@ -14,11 +14,11 @@ import { AddItemRequestPayload } from './add-item-resquest.payload';
 export class AddItemComponent implements OnInit {
 
   addForm : FormGroup;
+  transactionList : Array<AddItemRequestPayload> = [];
   addItemRequestPayload : AddItemRequestPayload;
-  id : number;
-  isCreated : boolean = false;
+  loginResponse: LoginResponse;
 
-  constructor(private http: HttpClient, private transactionService: TransactionService, private localStorage: LocalStorage, private toastr: ToastrService) { 
+  constructor(private transactionService: TransactionService, private authService: AuthService, private toastr: ToastrService) { 
     this.addItemRequestPayload = {
                    id : 0.0,  
       transactionType : '',
@@ -31,7 +31,6 @@ export class AddItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.localStorage.getItem('loginUserId', {type: 'number'}).subscribe(userId => this.id = userId);
     this.addForm = new FormGroup({
       transactionType : new FormControl(''),
                  type : new FormControl(''),
@@ -41,8 +40,9 @@ export class AddItemComponent implements OnInit {
                  date : new FormControl('')
     });
 
-    this.transactionService.currentValue.subscribe(val => this.isCreated = val);
+    this.authService.sharedLoginResponseObservable.subscribe(val => this.loginResponse = val);
     this.transactionService.currentSharedAddItemRequestPayload.subscribe(val => this.addItemRequestPayload = val);
+    this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
   }
 
   addTransaction() {
@@ -59,15 +59,13 @@ export class AddItemComponent implements OnInit {
     }
     
 
-    this.transactionService.addTransaction(this.addItemRequestPayload, this.id)
+    this.transactionService.addTransaction(this.addItemRequestPayload, this.loginResponse.id)
                            .subscribe(data => {
                              if(data) {
-                               this.isCreated = true;
-                               this.changeIsCreated();
+                              this.transactionList = this.transactionService.getAllTransactions(this.loginResponse.id);
+                              this.changeTransactionList();
                               this.toastr.success('Transction Created!', 'CONFIRMATION');
                              } else {
-                               this.isCreated = false;
-                               this.changeIsCreated();
                               this.toastr.error('Transaction not created, Try again!', 'ERROR');
                              }
                            });
@@ -77,13 +75,13 @@ export class AddItemComponent implements OnInit {
     return new Date().getFullYear() + '-' + (new Date().getMonth() >=10 ? new Date().getMonth() : '0' + new Date().getMonth())  
             + '-' + (new Date().getDate() >= 10 ? new Date().getDate() : '0' + new Date().getDate());
   }
-  
-  changeIsCreated() {
-    this.transactionService.sharedIsCreatedFunction(this.isCreated);
-  }
 
   changeAddItemRequestPayload() {
     this.transactionService.sharedAddItemRequestPayloadFunction(this.addItemRequestPayload);
+  }
+
+  changeTransactionList() {
+    this.transactionService.sharedTransactionListFunction(this.transactionList);
   }
 
 }
