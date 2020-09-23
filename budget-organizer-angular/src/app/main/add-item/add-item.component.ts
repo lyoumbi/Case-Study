@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { LoginResponse } from 'src/app/login/login-response.payload';
 import { AuthService } from 'src/app/shared/auth.service';
 import { TransactionService } from 'src/app/shared/transaction-service.service';
+import { ChartDataPayload } from '../display-chart/chartData.payload';
 import { TotalPayload } from '../display-chart/total.payload';
 import { AddItemRequestPayload } from './add-item-resquest.payload';
 
@@ -29,6 +30,7 @@ export class AddItemComponent implements OnInit {
   loginResponse: LoginResponse;
   totalPayload : TotalPayload;
   isUpdate : boolean;
+  chartDataPayload : ChartDataPayload;
 
   constructor(private transactionService: TransactionService, private authService: AuthService, private toastr: ToastrService) { 
   }
@@ -48,6 +50,7 @@ export class AddItemComponent implements OnInit {
     this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
     this.transactionService.sharedIsUpdateObservable.subscribe(val => this.isUpdate = val);
     this.authService.sharedTotalPayloadObservable.subscribe(val => this.totalPayload = val);
+    this.authService.sharedChartDataPayloadObservable.subscribe(val => this.chartDataPayload = val);
   }
 
   addTransaction() {
@@ -68,8 +71,12 @@ export class AddItemComponent implements OnInit {
                              if(data) {
                               this.transactionList = this.transactionService.getAllTransactions(this.loginResponse.id);
                               this.changeTransactionList();
-                              this.totalPayload = this.authService.calculateTotals(this.transactionList);
-                              this.changedTotalPayload();
+                              setTimeout(() => {
+                                this.totalPayload = this.authService.calculateTotals(this.transactionList);
+                                this.changedTotalPayload();
+                                this.chartDataPayload = this.authService.calculateChartData(this.transactionList);
+                                this.changeChartDataPayload();
+                              }, 500);
                               this.isUpdate = false;
                               this.changeIsUpdate();
                               this.toastr.success('Transaction Created!', 'CONFIRMATION');
@@ -98,6 +105,10 @@ export class AddItemComponent implements OnInit {
 
   changedTotalPayload() {
     this.authService.sharedTotalPayloadFunction(this.totalPayload);
+  }
+
+  changeChartDataPayload() {
+    this.authService.sharedChartDataPayFunction(this.chartDataPayload);
   }
 
 }

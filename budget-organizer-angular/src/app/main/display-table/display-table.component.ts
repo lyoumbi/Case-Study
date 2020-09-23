@@ -4,6 +4,7 @@ import { LoginResponse } from 'src/app/login/login-response.payload';
 import { AuthService } from 'src/app/shared/auth.service';
 import { TransactionService } from 'src/app/shared/transaction-service.service';
 import { AddItemRequestPayload } from '../add-item/add-item-resquest.payload';
+import { ChartDataPayload } from '../display-chart/chartData.payload';
 import { TotalPayload } from '../display-chart/total.payload';
 
 @Component({
@@ -18,6 +19,7 @@ export class DisplayTableComponent implements OnInit {
   loginResponse: LoginResponse;
   isUpdate : boolean = false;
   totalPayload : TotalPayload;
+  chartDataPayload : ChartDataPayload;
 
   constructor(private transactionService : TransactionService, private toastr : ToastrService, private authService : AuthService) {
    }
@@ -28,6 +30,7 @@ export class DisplayTableComponent implements OnInit {
     this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
     this.transactionService.sharedIsUpdateObservable.subscribe(val => this.isUpdate = val);
     this.authService.sharedTotalPayloadObservable.subscribe(val => this.totalPayload = val);
+    this.authService.sharedChartDataPayloadObservable.subscribe(val => this.chartDataPayload = val);
   }
 
   changeAddItemRequestPayload() {
@@ -36,6 +39,10 @@ export class DisplayTableComponent implements OnInit {
 
   changeTansactionList() {
     this.transactionService.sharedTransactionListFunction(this.transactionList);
+  }
+
+  changeChartDataPayload() {
+    this.authService.sharedChartDataPayFunction(this.chartDataPayload);
   }
 
   sendForUpdate(id : number) {
@@ -61,8 +68,12 @@ export class DisplayTableComponent implements OnInit {
                             if(data !== null) {
                               this.transactionList = this.transactionService.getAllTransactions(this.loginResponse.id);
                               this.changeTransactionList();
-                              this.totalPayload = this.authService.calculateTotals(this.transactionList);
-                              this.changedTotalPayload();
+                              setTimeout(() => {
+                                this.totalPayload = this.authService.calculateTotals(this.transactionList);
+                                this.changedTotalPayload();
+                                this.chartDataPayload = this.authService.calculateChartData(this.transactionList);
+                                this.changeChartDataPayload();
+                              }, 100);
                               this.toastr.success('Delete Data Successfully', 'CONFIRMATION');
                             } else {
                               this.toastr.error('Failed to Delete the data', 'ERROR');

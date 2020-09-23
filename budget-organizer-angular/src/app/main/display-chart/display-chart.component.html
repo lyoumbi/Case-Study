@@ -23,20 +23,12 @@
     </div>
 
     <div class="display-chart">
-        <div class="btn-group">
-            <button type="reset" class="btn btn-bar" (click)="chartTypeSwith('bar')">Bar</button>
-            <button type="reset" class="btn btn-polarArea" (click)="chartTypeSwith('polarArea')">Polar Area</button>
-            <button type="reset" class="btn btn-doughnut" (click)="chartTypeSwith('doughnut')">Doughnut</button>
-            <button type="reset" class="btn btn-pie" (click)="chartTypeSwith('pie')">Pie</button>
-        </div>
-        <div class="graph-container">
-            <canvas baseChart
-                    [datasets]="chartData"
-                    [labels]="chartLabels"
-                    [options]="chartOptions"
-                    [legend]="chartLegend"
-                    [chartType]="chartType">
-            </canvas>
-        </div>
+        <canvas baseChart
+                [datasets]="chartDataBuilder(chartDataPayload)"
+                [labels]="chartLabels"
+                [options]="chartOptions"
+                [legend]="chartLegend"
+                [chartType]="chartType">
+        </canvas>
     </div>
 </div>

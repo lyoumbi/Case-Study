@@ -36,6 +36,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .anyRequest()
                     .authenticated();
+
+        httpSecurity.headers().frameOptions().disable();
     }
 
     @Autowired

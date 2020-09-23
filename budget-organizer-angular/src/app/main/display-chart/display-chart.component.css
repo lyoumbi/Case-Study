@@ -1,37 +1,7 @@
 .display-chart-total .display-chart {
     width: 100%;
     height: 55%;
-  }
-  
-.display-chart-total .display-chart .btn-group {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: space-evenly;
-        -ms-flex-pack: space-evenly;
-            justify-content: space-evenly;
-  }
-  
-.display-chart-total .display-chart .btn-group button {
-    width: 20%;
-    font-size: 120%;
-    font-weight: 300;
-    text-align: center;
-    border: 2px solid black;
-    border-radius: 100px;
-    margin: 5% 0;
-    padding: 1%;
-    background-color: #8e2de2;
-    color: white;
-  }
-  
-.display-chart-total .display-chart .btn-group button:hover {
-    color: white;
-    border: 2px solid #8e2de2;
-    background-color: #4a00e0;
+    margin-top: 10%;
   }
   
 .display-chart-total .display-total {
@@ -42,6 +12,7 @@
     font-size: 15px;
     font-weight: normal;
     border-collapse: collapse;
+    margin-top: 10%;
   }
   
 .display-chart-total .display-total .total-table {

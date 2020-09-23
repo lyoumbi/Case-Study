@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AddItemRequestPayload } from '../main/add-item/add-item-resquest.payload';
+import { ChartDataPayload } from '../main/display-chart/chartData.payload';
 import { TotalPayload } from '../main/display-chart/total.payload';
 import { AuthService } from '../shared/auth.service';
 import { TransactionService } from '../shared/transaction-service.service';
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
   loginRequestPayload: LoginRequestPayload;
   totalPayload : TotalPayload;
   loginResponse: LoginResponse;
+  chartDataPayload : ChartDataPayload;
   transactionList : Array<AddItemRequestPayload> = [];
 
   constructor(private authService: AuthService, private router : Router, private toastr : ToastrService, private transactionService : TransactionService) {
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
     this.authService.sharedIsLoginObservable.subscribe(val => this.isLogin = val);
     this.authService.sharedTotalPayloadObservable.subscribe(val => this.totalPayload = val);
+    this.authService.sharedChartDataPayloadObservable.subscribe(val => this.chartDataPayload = val);
   }
 
 
@@ -57,6 +60,8 @@ export class LoginComponent implements OnInit {
                               setTimeout(() => {
                                 this.totalPayload = this.authService.calculateTotals(this.transactionList);
                                 this.changedTotalPayload();
+                                this.chartDataPayload = this.authService.calculateChartData(this.transactionList);
+                                this.changeChartDataPayload();
                               }, 500);
                               this.isLogin = false;
                               this.changeIsLogin();
@@ -82,6 +87,10 @@ export class LoginComponent implements OnInit {
 
   changedTotalPayload() {
     this.authService.sharedTotalPayloadFunction(this.totalPayload);
+  }
+
+  changeChartDataPayload() {
+    this.authService.sharedChartDataPayFunction(this.chartDataPayload);
   }
 
 }

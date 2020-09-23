@@ -33,13 +33,13 @@ public class TransactionService {
     }
 
     public List<Transaction> findByUser(Long id) {
-        User user = userRepository.findById(id).get();
+        User user = userRepository.findById(id).orElseGet(() -> null);
         List<Transaction> transactions = transactionRepository.findByUser(user);
         return transactions;
     }
 
     public Transaction findById(Long id) {
-        return transactionRepository.findById(id).get();
+        return transactionRepository.findById(id).orElseGet(() -> null);
     }
 
     public Transaction create(Transaction transaction, Long id) {
@@ -70,12 +70,14 @@ public class TransactionService {
 
     public Transaction deleteById(Long id) {
         Transaction transaction = findById(id);
+        if(transaction == null) return null;
         transactionRepository.delete(transaction);
         return transaction;
     }
 
     public Transaction update(Long id, Transaction transaction) {
         Transaction transactionToBeUpdated = findById(id);
+        if(transactionToBeUpdated == null) return null;
         transactionToBeUpdated.setType(transaction.getType());
         transactionToBeUpdated.setDescription(transaction.getDescription());
         transactionToBeUpdated.setTransactionType(transaction.getTransactionType());
