@@ -53,10 +53,6 @@ sharedTotalPayloadObservable = this.sharedTotalPayload.asObservable();
   private sharedLoginResponse = new BehaviorSubject<LoginResponse>(this.loginResponse);
   sharedLoginResponseObservable = this.sharedLoginResponse.asObservable();
 
-  isLogin : boolean = false;
-  private sharedIsLogin = new BehaviorSubject<boolean>(this.isLogin);
-  sharedIsLoginObservable = this.sharedIsLogin.asObservable();
-
   constructor(private httpClient: HttpClient) {
     this.sharedLoginResponseObservable.subscribe(val => this.loginResponse = val);
   }
@@ -72,10 +68,6 @@ sharedTotalPayloadObservable = this.sharedTotalPayload.asObservable();
 
   sharedLoginResponseFunction(value:LoginResponse) {
     this.sharedLoginResponse.next(value);
-  }
-
-  sharedIsLoginFunction(value : boolean) {
-    this.sharedIsLogin.next(value);
   }
 
   sharedTotalPayloadFunction(value: TotalPayload) {

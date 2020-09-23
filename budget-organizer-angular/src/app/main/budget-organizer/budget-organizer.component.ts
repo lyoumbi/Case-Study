@@ -10,7 +10,6 @@ import { TransactionService } from 'src/app/shared/transaction-service.service';
   styleUrls: ['./budget-organizer.component.css']
 })
 export class BudgetOrganizerComponent implements OnInit {
-  isLogin : boolean;
   isUpdate : boolean = false;
 
   @HostListener('window:load') 
@@ -18,19 +17,10 @@ export class BudgetOrganizerComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  constructor(private authService: AuthService, private router: Router, private transactionService : TransactionService) {
-    this.authService.sharedIsLoginObservable.subscribe(val => this.isLogin = val);
+  constructor(private router: Router, private transactionService : TransactionService) {
   } 
 
   ngOnInit(): void {
     this.transactionService.sharedIsUpdateObservable.subscribe(val => this.isUpdate = val);
-  }
-
-  changeIsLogin() {
-    this.authService.sharedIsLoginFunction(this.isLogin);
-  }
-
-  changeIsUpdate() {
-    this.transactionService.shareIsUpdateFunction(this.isUpdate);
   }
 }

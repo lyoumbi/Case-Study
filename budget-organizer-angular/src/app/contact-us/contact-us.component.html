@@ -13,7 +13,10 @@
             <div class="message">
                 <ion-icon name="pencil-sharp"></ion-icon><textarea name="message" id="message" cols="40" rows="15" [formControlName]="'message'"></textarea>
             </div>
-            <input type="submit" value="SEND MESSAGE">
+            <div class="error" *ngIf="!contactForm.get('email').valid && contactForm.get('email').touched">Email cannot be empty</div>
+            <div class="error" *ngIf="!contactForm.get('subject').valid && contactForm.get('subject').touched">Subject cannot be empty</div>
+            <div class="error" *ngIf="!contactForm.get('message').valid && contactForm.get('message').touched">Message cannot be empty</div>
+            <input type="submit" value="SEND Mail">
         </form>
     </div>
 </div>

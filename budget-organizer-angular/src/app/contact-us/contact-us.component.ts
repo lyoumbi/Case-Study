@@ -17,10 +17,10 @@ export class ContactUsComponent implements OnInit {
 
   constructor(private mailSender: MailSenderService, private toastr: ToastrService) { 
     this.contactRequest = {
-      email : '',
-    subject : '',
-    message : ''
-    }
+                              email : '',
+                            subject : '',
+                            message : ''
+                          };
     
   }
 
@@ -37,6 +37,11 @@ export class ContactUsComponent implements OnInit {
     this.contactRequest.message = this.contactForm.get('message').value;
     this.mailSender.sendMail(this.contactRequest).subscribe(data => {
       if(data) {
+        this.contactRequest = {
+                                  email : '',
+                                subject : '',
+                                message : ''
+                              };
         this.toastr.success('Email successfully sent.', 'CONFIRMATION');
       } else {
         this.toastr.error('Mail not send!', 'ERROR');

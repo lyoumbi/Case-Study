@@ -19,7 +19,6 @@ import { LoginResponse } from './login-response.payload';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  isLogin : boolean = false;
   loginRequestPayload: LoginRequestPayload;
   totalPayload : TotalPayload;
   loginResponse: LoginResponse;
@@ -41,7 +40,6 @@ export class LoginComponent implements OnInit {
 
     this.authService.sharedLoginResponseObservable.subscribe(val => this.loginResponse = val);
     this.transactionService.sharedTransactionListObservable.subscribe(val => this.transactionList = val);
-    this.authService.sharedIsLoginObservable.subscribe(val => this.isLogin = val);
     this.authService.sharedTotalPayloadObservable.subscribe(val => this.totalPayload = val);
     this.authService.sharedChartDataPayloadObservable.subscribe(val => this.chartDataPayload = val);
   }
@@ -63,8 +61,6 @@ export class LoginComponent implements OnInit {
                                 this.chartDataPayload = this.authService.calculateChartData(this.transactionList);
                                 this.changeChartDataPayload();
                               }, 500);
-                              this.isLogin = false;
-                              this.changeIsLogin();
                               this.router.navigateByUrl('/budget-organizer');
                             } else {
                               this.toastr.error('Email or Password not valid!', 'LOGIN ERROR');
@@ -79,10 +75,6 @@ export class LoginComponent implements OnInit {
 
   changeTransactionList() {
     this.transactionService.sharedTransactionListFunction(this.transactionList);
-  }
-
-  changeIsLogin() {
-    this.authService.sharedIsLoginFunction(this.isLogin);
   }
 
   changedTotalPayload() {
