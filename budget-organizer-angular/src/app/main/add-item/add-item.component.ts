@@ -84,7 +84,14 @@ export class AddItemComponent implements OnInit {
                               this.toastr.error('Transaction not create, Try again!', 'ERROR');
                              }
                            });
-  }
+  this.addForm.setValue({
+                          'type': '',
+                          'transactionType': '',
+                          'description': 'New Transaction',
+                          'location': 'Store or Online',
+                          'amount': 0
+                        });
+}
 
   getCurrentDate() : string {
     return new Date().getFullYear() + '-' + (new Date().getMonth() >=10 ? new Date().getMonth() : '0' + new Date().getMonth())  

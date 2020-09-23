@@ -48,15 +48,8 @@ export class DisplayTableComponent implements OnInit {
   sendForUpdate(id : number) {
     this.transactionService.getTransaction(id)
                            .subscribe(data => {
-                                        this.addItemRequestPayload.id = data.id;
-                                        this.addItemRequestPayload.type = data.type;
-                                        this.addItemRequestPayload.transactionType = data.transactionType;
-                                        this.addItemRequestPayload.description = data.description;
-                                        this.addItemRequestPayload.location = data.location;
-                                        this.addItemRequestPayload.date = data.date;
-                                        this.addItemRequestPayload.amount = data.amount;
+                                        this.addItemRequestPayload = data;
                                         this.changeAddItemRequestPayload();
-
                                         this.isUpdate = true;
                                         this.changeIsUpdate();
                                      });

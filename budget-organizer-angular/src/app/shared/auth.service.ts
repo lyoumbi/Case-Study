@@ -95,8 +95,14 @@ sharedTotalPayloadObservable = this.sharedTotalPayload.asObservable();
                                                 .map((transaction : AddItemRequestPayload) : number => transaction.amount)
                                                 .reduce((a: number , b: number): number => a + b, 0);
     this.totalPayload.availableBudget = this.totalPayload.initialBudget + this.totalPayload.totalIncome - this.totalPayload.totalExpense;
-    this.totalPayload.totalIncomePer = Math.trunc(this.totalPayload.totalIncome*100/(this.totalPayload.totalIncome + this.totalPayload.totalExpense));
-    this.totalPayload.totalExpensePer = Math.trunc(this.totalPayload.totalExpense*100/(this.totalPayload.totalIncome + this.totalPayload.totalExpense));
+
+    if(this.totalPayload.totalIncome + this.totalPayload.totalExpense == 0) {
+      this.totalPayload.totalIncomePer = 0;
+      this.totalPayload.totalExpensePer = 0;
+    } else {
+      this.totalPayload.totalIncomePer = Math.trunc(this.totalPayload.totalIncome*100/(this.totalPayload.totalIncome + this.totalPayload.totalExpense));
+      this.totalPayload.totalExpensePer = Math.trunc(this.totalPayload.totalExpense*100/(this.totalPayload.totalIncome + this.totalPayload.totalExpense));
+    }
     return this.totalPayload;
  }
 
@@ -117,6 +123,7 @@ sharedTotalPayloadObservable = this.sharedTotalPayload.asObservable();
  }
 
  calculateTransactionType(transactions : Array<AddItemRequestPayload>, transactionType : string) : number {
+   if(this.totalPayload.totalIncome + this.totalPayload.totalExpense == 0) return 0;
   return  transactions.filter(transaction => transaction.transactionType === transactionType)
                       .map((transaction : AddItemRequestPayload) : number => {
                         if(transaction.amount) {

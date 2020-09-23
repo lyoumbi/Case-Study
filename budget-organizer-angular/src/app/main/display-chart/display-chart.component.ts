@@ -32,13 +32,10 @@ export class DisplayChartComponent implements OnInit {
   }
 
   chartOptions = {
-    scaleShowVerticalLines: false,
+    scaleShowVerticalLines: true,
     responsive: true
   };
-
   chartLabels = ['Salary', 'Dividend', 'Gift', 'Tip', 'Transport', 'Groceries', 'Bill', 'Rent/Morgage', 'Clothes', 'Restaurant', 'Entertainment', 'Other'];
-  chartLegend = true;  
-
   chartType = 'bar';
 
   chartDataBuilder(value: ChartDataPayload) {

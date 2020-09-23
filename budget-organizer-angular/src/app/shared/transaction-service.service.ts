@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AddItemRequestPayload } from '../main/add-item/add-item-resquest.payload';
-import { TotalPayload } from '../main/display-chart/total.payload';
 
 @Injectable({
   providedIn: 'root'

@@ -23,20 +23,16 @@ public class MailService {
         this.mailContentBuilderService = mailContentBuilderService;
     }
 
-    public void sendEmail(EmailNotification emailNotification) {
-        MimeMessagePreparator messagePreparator = mimeMessage -> {
+    public void sendEmail(EmailNotification emailNotification) throws MailException {
+        MimeMessagePreparator messagePreparer = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setFrom("lyoumbi@budgetorginizer.com");
-            messageHelper.setTo(emailNotification.getEmail());
+            messageHelper.setFrom(emailNotification.getEmail());
+            messageHelper.setTo("lyoumbi@budgetorginizer.com");
             messageHelper.setSubject(emailNotification.getSubject());
             messageHelper.setText(mailContentBuilderService.buildEmailToSend(emailNotification.getMessageBody()));
         };
+        mailSender.send(messagePreparer);
+        logger.info("Email successfully sent!");
 
-        try {
-            mailSender.send(messagePreparator);
-            logger.info("Email sent!");
-        } catch (MailException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { MailSenderService } from '../shared/mail-sender.service';
 import { ContactRequest } from './contact-us-request.payload';
 
 @Component({
@@ -13,7 +15,7 @@ export class ContactUsComponent implements OnInit {
   contactForm : FormGroup;
   contactRequest : ContactRequest;
 
-  constructor(HttpClient : HttpClient) { 
+  constructor(private mailSender: MailSenderService, private toastr: ToastrService) { 
     this.contactRequest = {
       email : '',
     subject : '',
@@ -30,7 +32,16 @@ export class ContactUsComponent implements OnInit {
   }
 
   sendEmail() {
-    
+    this.contactRequest.email = this.contactForm.get('email').value;
+    this.contactRequest.subject = this.contactForm.get('subject').value;
+    this.contactRequest.message = this.contactForm.get('message').value;
+    this.mailSender.sendMail(this.contactRequest).subscribe(data => {
+      if(data) {
+        this.toastr.success('Email successfully sent.', 'CONFIRMATION');
+      } else {
+        this.toastr.error('Mail not send!', 'ERROR');
+      }
+    });
   }
 
 }

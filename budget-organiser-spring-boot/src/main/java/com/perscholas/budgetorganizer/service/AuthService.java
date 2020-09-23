@@ -22,9 +22,6 @@ public class AuthService {
     private UserDetailServiceImpl userDetailService;
     private UserService userService;
 
-//    @Autowired
-//    private MailService mailService;
-
     @Autowired
     public AuthService(PasswordEncoder passwordEncoder, UserRepository userRepository, UserDetailServiceImpl userDetailService, UserService userService) {
         this.passwordEncoder = passwordEncoder;
@@ -60,7 +57,7 @@ public class AuthService {
         } else {
             return null;
         }
-//        mailService.sendEmail(new EmailNotification("myemaill@tmail.com", "My Test", "Testing the Mail trap to gmail."));
+
     }
 
 
