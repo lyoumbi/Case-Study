@@ -2,13 +2,13 @@
     <table class="fl-table">
         <thead>
             <tr>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th></th>
+                <th (click)="sortByType()" >Type</th>
+                <th (click)="sortByTransactionType()">Name</th>
+                <th  class="not-sortable">Description</th>
+                <th  class="not-sortable">Location</th>
+                <th (click)="sortByDate()">Date</th>
+                <th (click)="sortByAmount()">Amount</th>
+                <th  class="not-sortable"></th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +19,8 @@
                 <td>{{transaction.location}}</td>
                 <td>{{transaction.date}}</td>
                 <td>${{transaction.amount}}</td>
-                <td><ion-icon name="create-sharp" id="edit" (click)="sendForUpdate(transaction.id)"></ion-icon>
-                    <ion-icon name="close-circle-outline" id="delete"  (click)="delete(transaction.id)"></ion-icon></td>
+                <td><ion-icon name="create-outline" id="edit" (click)="sendForUpdate(transaction.id)"></ion-icon>
+                    <ion-icon name="trash-outline" id="delete"  (click)="delete(transaction.id)"></ion-icon></td>
             </tr>
         <tbody>
     </table>

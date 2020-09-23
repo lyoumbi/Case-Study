@@ -74,6 +74,33 @@ export class DisplayTableComponent implements OnInit {
                           });
   }
 
+  sortByType() {
+    this.transactionList.sort(this.sortByProperty('type'));
+  }
+
+  sortByTransactionType() {
+    this.transactionList.sort(this.sortByProperty('transactionType'));
+  }
+
+  sortByDate() {
+    this.transactionList.sort(this.sortByProperty('date'));
+  }
+
+  sortByAmount() {
+    this.transactionList.sort(this.sortByProperty('amount'));
+  }
+
+  sortByProperty(property: string){  
+    return function(a: AddItemRequestPayload,b: AddItemRequestPayload) {  
+       if(a[property] > b[property])  
+          return 1;  
+       else if(a[property] < b[property])  
+          return -1;  
+   
+       return 0;  
+    }  
+  }
+
   changeTransactionList() {
     this.transactionService.sharedTransactionListFunction(this.transactionList);
   }

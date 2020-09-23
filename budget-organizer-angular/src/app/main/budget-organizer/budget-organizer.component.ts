@@ -1,5 +1,6 @@
-import {  AfterViewInit, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router, NavigationStart } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth.service';
 import { TransactionService } from 'src/app/shared/transaction-service.service';
 
@@ -8,23 +9,18 @@ import { TransactionService } from 'src/app/shared/transaction-service.service';
   templateUrl: './budget-organizer.component.html',
   styleUrls: ['./budget-organizer.component.css']
 })
-export class BudgetOrganizerComponent implements OnInit, AfterViewInit {
-
+export class BudgetOrganizerComponent implements OnInit {
   isLogin : boolean;
   isUpdate : boolean = false;
 
+  @HostListener('window:load') 
+  goToLogin() {
+    this.router.navigateByUrl('/login');
+  }
+
   constructor(private authService: AuthService, private router: Router, private transactionService : TransactionService) {
     this.authService.sharedIsLoginObservable.subscribe(val => this.isLogin = val);
-    if(this.isLogin) {
-      this.router.navigateByUrl('/login');
-      this.isLogin = false;
-      this.changeIsLogin();
-    }
-  }
-  ngAfterViewInit(): void {
-    this.isLogin = true;
-    this.changeIsLogin();
-  }
+  } 
 
   ngOnInit(): void {
     this.transactionService.sharedIsUpdateObservable.subscribe(val => this.isUpdate = val);
