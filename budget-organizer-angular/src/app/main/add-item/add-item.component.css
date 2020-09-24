@@ -1,7 +1,7 @@
 .add-item {
     width: 100%;
-    height: 20%;
-    margin-top: 3%;
+    height: 23%;
+    margin-top: 2.5%;
     background-image: -webkit-gradient(linear, left top, right top, from(#8e2de2), to(#4a00e0));
     background-image: linear-gradient(to right, #8e2de2, #4a00e0);
   }

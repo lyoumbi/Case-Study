@@ -89,7 +89,7 @@
   }
   
   .nav #user-logo {
-    width: 15%;
+    width: 12%;
     margin-left: 35%;
     margin-right: 3%;
     color: white;
@@ -104,7 +104,7 @@
   }
   
   .nav #user-logo ion-icon {
-    font-size: 400%;
+    font-size: 300%;
     margin-left: 4%;
   }
   
@@ -120,9 +120,10 @@
   }
   
   .nav img {
-    width: auto;
-    height: 95%;
+    width: 2%;
+    height: auto;
     border-radius: 50%;
     cursor: pointer;
+    margin: 0 0 0.5% 0;
   }
   
