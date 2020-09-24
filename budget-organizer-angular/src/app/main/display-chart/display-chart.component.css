@@ -5,14 +5,14 @@
   }
   
 .display-chart-total .display-total {
-    width: 100%;
+    width: 80%;
     height: 70%;
     border-radius: 5px;
     border: 2px solid black;
     font-size: 15px;
     font-weight: normal;
     border-collapse: collapse;
-    margin-top: 10%;
+    margin: 2% 0 0 3%;
   }
   
 .display-chart-total .display-total .total-table {
@@ -25,9 +25,9 @@
   
 .display-chart-total .display-total .total-table tr th {
     text-align: left;
-    padding-left: 5%;
+    padding-left: 1%;
     text-transform: uppercase;
-    font-size: 230%;
+    font-size: 200%;
     font-weight: 300;
   }
   

@@ -25,9 +25,9 @@
   .resume .desc {
     width: 77%;
     height: 90%;
-    padding: 3% 2% 0 3%;
+    padding: 2% 1% 0 2%;
     text-align: justify;
-    margin-left: 3%;
+    margin-left: 1%;
   }
   
   .resume .desc div {
@@ -35,8 +35,8 @@
   }
   
   .resume .desc div h1 {
-    font-size: 300%;
-    font-weight: 400;
+    font-size: 250%;
+    font-weight: 300;
     color: #4a00e0;
     text-align: center;
     text-transform: uppercase;
@@ -44,14 +44,14 @@
   
   .resume .desc div h2 {
     margin-top: 1%;
-    font-size: 150%;
+    font-size: 120%;
     color: #8e2de2;
     font-weight: 300;
   }
   
   .resume .desc div h3 {
     margin-top: 1%;
-    font-size: 120%;
+    font-size: 100%;
     font-weight: 300;
     color: #8e2de2;
   }
@@ -100,15 +100,15 @@
   }
   
   .resume .contact h1 {
-    font-size: 300%;
+    font-size: 250%;
     color: white;
-    font-weight: 400;
+    font-weight: 300;
     text-align: center;
     margin-top: 10%;
   }
   
   .resume .contact h2 {
-    font-size: 170%;
+    font-size: 130%;
     color: white;
     font-weight: 300;
     text-align: left;
@@ -116,11 +116,11 @@
   }
   
   .resume .contact h2 ion-icon {
-    font-size: 150%;
+    font-size: 120%;
   }
   
   .resume .contact h2 a {
-    font-size: 150%;
+    font-size: 120%;
     font-weight: 300;
     color: white;
     text-decoration: none;
@@ -132,7 +132,7 @@
   
   .resume .contact h3 {
     font-style: italic;
-    font-size: 150%;
+    font-size: 110%;
     color: white;
     font-weight: 300;
     text-align: center;
