@@ -5,7 +5,7 @@
         <form action="#" method="post" [formGroup]="loginForm" (ngSubmit)="login()">
             <span>
                 <ion-icon name="person-sharp"></ion-icon>
-                <input type="text" name="username" id="username" placeholder="Username" [formControlName]="'email'">
+                <input type="email" name="email" id="email" placeholder="Email" [formControlName]="'email'">
             </span> 
             <span>
                 <ion-icon name="lock-closed"></ion-icon>
