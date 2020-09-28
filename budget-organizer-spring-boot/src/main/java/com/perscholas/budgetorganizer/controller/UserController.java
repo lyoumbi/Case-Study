@@ -1,5 +1,6 @@
 package com.perscholas.budgetorganizer.controller;
 
+import com.perscholas.budgetorganizer.dto.ChangePasswordDto;
 import com.perscholas.budgetorganizer.model.User;
 import com.perscholas.budgetorganizer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PutMapping("/update-password/{id}")
-    public User updatePassword(@RequestBody Long id, @RequestBody User user) {
-        return userService.updatePassword(id, user);
+    @PutMapping("/change-password/{id}")
+    public User changePassword(@PathVariable Long id, @RequestBody ChangePasswordDto changePasswordDto) {
+        return userService.changePassword(id, changePasswordDto);
     }
 
     @DeleteMapping("/delete-user/{id}")
-    public User deleteUser(@RequestBody Long id) {
+    public User deleteUser(@PathVariable Long id) {
         return userService.delete(id);
     }
 }

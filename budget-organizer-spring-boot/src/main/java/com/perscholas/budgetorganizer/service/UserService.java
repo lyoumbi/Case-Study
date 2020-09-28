@@ -1,5 +1,6 @@
 package com.perscholas.budgetorganizer.service;
 
+import com.perscholas.budgetorganizer.dto.ChangePasswordDto;
 import com.perscholas.budgetorganizer.model.User;
 import com.perscholas.budgetorganizer.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,15 @@ public class UserService {
         return currUser;
     }
 
-    public User updatePassword(Long id, User user) {
-        User currUser = userRepository.findById(id).get();
-        currUser.setPassword(passwordEncoder.encode(user.getPassword()));
+    public User changePassword(Long id, ChangePasswordDto changePasswordDto) {
+        User currUser = userRepository.findById(id).orElseGet(() -> null);
+        if(currUser == null) return null;
+        if(passwordEncoder.matches(changePasswordDto.getCurrentPassword(), currUser.getPassword()) &&
+            changePasswordDto.getNewPassword().equals(changePasswordDto.getConfirmPassword())) {
+                currUser.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
+        } else {
+            return null;
+        }
         return userRepository.save(currUser);
     }
 }

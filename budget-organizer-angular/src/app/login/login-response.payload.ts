@@ -3,6 +3,5 @@ export interface LoginResponse {
     email : string;
     initialBudget : number;
     firstName : string;
-    lastName : string;    
-
+    lastName : string;
 }

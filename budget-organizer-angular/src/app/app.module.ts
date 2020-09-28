@@ -22,6 +22,7 @@ import { DisplayTableComponent } from './main/display-table/display-table.compon
 import { DisplayChartComponent } from './main/display-chart/display-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { UpdateItemComponent } from './main/update-item/update-item.component';
+import { ChangePasswordComponent } from './main/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UpdateItemComponent } from './main/update-item/update-item.component';
     DisplayTableComponent,
     DisplayChartComponent,
     UpdateItemComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

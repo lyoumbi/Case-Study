@@ -13,7 +13,6 @@ export class BudgetOrganizerHeaderComponent implements OnInit {
 
   firstName : string;
   lastName : string;
-  id : number;
   loginResponse: LoginResponse;
 
   constructor(private toastr: ToastrService, private authService: AuthService) {}
