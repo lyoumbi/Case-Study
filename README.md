@@ -1,5 +1,6 @@
 # Case-Study Budget Organizer web application
-## Git: clone the repository
+## Git 
+* Clone the repository
 
 ## MYSQL
 * Run the `.sql` script [budget-organizer.sql](./budget-organizer.sql)  (h2-console cannot work here, it is blocked by Spring-security)
