@@ -32,19 +32,25 @@
   }
   
 .display-chart-total .display-total .total-table tr th:nth-child(1) {
-    color: white;
     font-weight: 300;
-    background-color: #8e2de2;
+    background-color: #8d2de29c;
   }
   
 .display-chart-total .display-total .total-table tr td {
     text-align: center;
-    color: white;
     font-size: 150%;
     font-weight: 300;
-    background-color: #4a00e0;
+    background-color: #4b00e0ad;
   }
 
   .display-chart-total .display-total .total-table tr td:nth-child(3) {
-    background-color: #8e2de2;
+    background-color: #8d2de29c;
+  }
+
+  .income {
+    color: rgba(16, 255, 16, 0.849);
+  }
+
+  .expense {
+    color: rgba(255, 40, 40, 0.918);
   }

@@ -1,21 +1,17 @@
 <header>
-    <div class="menu animated fadeOutLeft">
-        <div (click)="menuClosed()" id="close">
-            <ion-icon name="close-circle-outline"></ion-icon>
-        </div>
-
+    <div class="menu animated fadeOutLeft" (mouseleave)="menuClosed()">
         <div class="menu-item">
             <ul>
-                <li><a href="#" routerLink="/">Home</a></li>
-                <li><a href="#" routerLink="/login">Login</a></li>
-                <li><a href="#" routerLink="/register">Register</a></li>
-                <li><a href="#" routerLink="/contact-us">Contact Us</a></li>
-                <li><a href="#" routerLink="/about-us">About Us</a></li>
+                <li (click)="menuClosed()"><a href="#" routerLink="/">Home</a></li>
+                <li (click)="menuClosed()"><a href="#" routerLink="/login">Login</a></li>
+                <li (click)="menuClosed()"><a href="#" routerLink="/register">Register</a></li>
+                <li (click)="menuClosed()"><a href="#" routerLink="/contact-us">Contact Us</a></li>
+                <li (click)="menuClosed()"><a href="#" routerLink="/about-us">About Us</a></li>
             </ul>
         </div>
     </div>
     <div class="nav">
-        <div (click)="menuDisplay()" id="menu-logo"><ion-icon name="menu"></ion-icon><span>MENU</span></div>
+        <div (mouseover)="menuDisplay()" id="menu-logo"><ion-icon name="menu"></ion-icon><span>MENU</span></div>
         <img src="/assets/img/logo.JPG" alt="Logo" routerLink="/">
     </div>
 </header>

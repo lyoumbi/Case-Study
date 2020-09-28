@@ -21,26 +21,15 @@
     z-index: 2;
 }
   
-.menu #close {
-    width: auto;
-    height: 20%;
-    color: white;
-    font-size: 300%;
-    cursor: pointer;
-}
-  
-.menu #close ion-icon:hover {
-color: #4a00e0;
-}
-  
 .menu .menu-item {
-width: 100%;
-height: 55%;
+    width: 100%;
+    height: 100%;
 }
   
 .menu .menu-item ul {
 width: 100%;
-height: 100%;
+height: 50%;
+margin: 40% 0 0 0;
 display: -webkit-box;
 display: -ms-flexbox;
 display: flex;

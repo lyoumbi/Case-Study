@@ -1,16 +1,15 @@
 <header>
     <div class="nav">
         <img src="/assets/img/logo.JPG" alt="Logo">
-        <div (click)="menuDisplay()" id="user-logo">
+        <div (mouseover)="menuDisplay()" id="user-logo">
             <span>{{loginResponse.firstName}}</span><span>{{loginResponse.lastName}}</span><ion-icon name="people-circle"></ion-icon>
         </div>
     </div>
 
-    <div class="user-menu animated fadeOutUp">
-        <ion-icon name="close-circle-outline" id="close" (click)="menuClosed()"></ion-icon>
+    <div class="user-menu animated fadeOutUp" (mouseleave)="menuClosed()">
         <ul>
             <li><a href="#" routerLink="/login" (click)="logout()">Logout</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="#" (click)="menuClosed()">Change Password</a></li>
         </ul>
     </div>
 </header>

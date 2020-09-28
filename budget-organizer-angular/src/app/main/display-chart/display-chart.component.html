@@ -1,21 +1,21 @@
 <div class="display-chart-total">
     <div class="display-total">
         <table class="total-table">
-            <tr>
+            <tr class="income">
                 <th colspan="2">Initial Budget</th>
                 <td>${{totalPayload.initialBudget}}</td>
             </tr>
-            <tr>
+            <tr class="income">
                 <th class="right-align">Total Income</th>
                 <td>${{totalPayload.totalIncome}}</td>
                 <td>{{totalPayload.totalIncomePer}}%</td>
             </tr>
-            <tr>
+            <tr class="expense">
                 <th class="right-align">Total Expenses</th>
                 <td>${{totalPayload.totalExpense}}</td>
                 <td>{{totalPayload.totalExpensePer}}%</td>
             </tr>
-            <tr>
+            <tr [ngClass]="{'income': totalPayload.availableBudget>=totalPayload.initialBudget, 'expense' : totalPayload.availableBudget<totalPayload.initialBudget}">
                 <th colspan="2">Available Budget</th>
                 <td>${{totalPayload.availableBudget}}</td>
             </tr>
