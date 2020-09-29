@@ -15,4 +15,6 @@
 * Open the folder `budget-organizer-spring-boot` with IntelliJ
 * Update the spring.datasource.password in the application.properties file
 * Start the application
-## 
+## Login Credential
+* User email: `lyoumbi@gmail.com`
+* Password: `1234`
