@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
         .register(this.registerRequestPayload)
         .subscribe(data => {
           if(data !== null) {
-            this.toastr.success('You registered Successfully!', 'CONFIRMATION');
+            this.toastr.success('You registered Successfully', 'CONFIRMATION');
             this.router.navigate(['/login']);
           } else {
             this.toastr.error('Failed to register, Try again!', 'REGISTRATION ERROR');

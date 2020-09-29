@@ -46,10 +46,10 @@ export class ChangePasswordComponent implements OnInit {
     this.changePasswordService.changePassword(this.loginResponse.id, this.changePasswordPayload)
                               .subscribe(data => {
                                 if(data == null) {
-                                  this.toastr.error("Password cannot be changed", "ERROR");
+                                  this.toastr.error('Password cannot be changed', 'ERROR');
                                 } else {
-                                  this.toastr.success("Password successfully changed", "CONFIRMATION");
-                                  this.router.navigateByUrl("/login");
+                                  this.toastr.success('Password successfully changed', 'CONFIRMATION');
+                                  this.router.navigateByUrl('/login');
                                 }
                               });
   }

@@ -6,6 +6,9 @@
     display: none;
     width: 15%;
     height: 20%;
+    border-bottom: 2px solid #003cff;
+    border-left: 2px solid #003cff;
+    border-radius: 0 0 0 10px;
     background: -webkit-gradient(linear, left top, right top, from(#8e2de2), to(#4a00e0));
     background: linear-gradient(to right, #8e2de2, #4a00e0);
     opacity: 0.9;
@@ -84,6 +87,7 @@
   
   .nav #user-logo {
     width: 12%;
+    height: 100%;
     margin-left: 35%;
     margin-right: 3%;
     color: white;
@@ -98,11 +102,13 @@
   }
   
   .nav #user-logo ion-icon {
+    display: block;
     font-size: 300%;
     margin-left: 4%;
   }
   
   .nav #user-logo span {
+    display: block;
     font-size: x-large;
     padding-top: 1%;
     font-weight: 300;

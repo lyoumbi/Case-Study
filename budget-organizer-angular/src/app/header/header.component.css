@@ -96,6 +96,7 @@ display: flex;
 
 .nav #menu-logo {
 width: 9%;
+height: 100%;
 margin-right: 39%;
 color: white;
 font-size: 400%;
@@ -109,13 +110,15 @@ cursor: pointer;
 }
 
 .nav #menu-logo ion-icon {
-margin-left: 4%;
+    display: block;
+    margin-left: 4%;
 }
 
 .nav #menu-logo span {
-font-size: xx-large;
-padding-top: 1%;
-font-weight: 200;
+    display: block;
+    font-size: xx-large;
+    padding-top: 1%;
+    font-weight: 200;
 }
 
 .nav #menu-logo:hover {
