@@ -1,4 +1,12 @@
 <div class="display-chart-total">
+    <div class="display-chart">
+        <canvas baseChart
+                [datasets]="chartDataBuilder(this.chartDataPayload)"
+                [labels]="chartLabels"
+                [options]="chartOptions"
+                [chartType]="chartType">
+        </canvas>
+    </div>
     <div class="display-total">
         <table class="total-table">
             <tr class="income">
@@ -20,14 +28,5 @@
                 <td>${{totalPayload.availableBudget}}</td>
             </tr>
         </table>
-    </div>
-
-    <div class="display-chart">
-        <canvas baseChart
-                [datasets]="chartDataBuilder(this.chartDataPayload)"
-                [labels]="chartLabels"
-                [options]="chartOptions"
-                [chartType]="chartType">
-        </canvas>
     </div>
 </div>
